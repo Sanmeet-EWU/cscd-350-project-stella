@@ -1,5 +1,6 @@
 # TakeThat!
 A brief description of our project
+ 
 TakeThat! is a social media application that sends users a daily notification 
 to take a photo of something around them with a specific criteria. Users have
 five minutes to take a photo.
