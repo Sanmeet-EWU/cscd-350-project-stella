@@ -7,7 +7,7 @@
 TakeThat! is a social media mobile application for androids. Users will be prompted each day to take a picture within a certain criteria which will build upon there story. Users will be able to have friends to share there story with and witness theirs. Major components include the front end ( user interface), authentication service ( Firebase Authentication), database ( Firebase Cloud Firestore) and a back end for custom functions. Front end will communicate with authentication using SDK calls and once logged in will communicate with the backend services to load in user data like stories and friends. Backend will communicate with the database to provide the custom functions with the information it needs. 
 
 
-![System Components](/home/airgap/Arch/comp.png)
+![System Components](../images/comp.png)
 
 
 
@@ -50,7 +50,7 @@ Will focus on the front end component since a lot of the other components such a
 
 
 
-![UML](/home/airgap/Arch/UML.png)
+![UML](../images/UML.png)
 
 
 
@@ -90,7 +90,7 @@ TakeThat! follows a MVC design because we can divide our application into each o
 
  Step by step for uploading goes as follows. When the user is authenticated our prompt class will notify them of the daily prompt. User can then use the TakePhoto to capture a photo object and upload that photo. Database will be updated with that photo and then the StoryPage will be able to correctly show the us updated story.
  
- ![Activity Diagram](/home/airgap/Arch/activity.png)
+ ![Activity Diagram](../images/activity.png)
  
  
  
