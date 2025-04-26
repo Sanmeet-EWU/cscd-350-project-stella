@@ -86,13 +86,15 @@ TakeThat! follows a MVC design because we can divide our application into each o
 
 
 
-### Behavior Modeling
+## Structural & Behavioral Modeling
 
+### Activity Diagram
  Step by step for uploading goes as follows. When the user is authenticated our prompt class will notify them of the daily prompt. User can then use the TakePhoto to capture a photo object and upload that photo. Database will be updated with that photo and then the StoryPage will be able to correctly show the us updated story.
  
  ![Activity Diagram](images/activity.png)
  
 
+### Sequence Diagram
  The sequence diagram illustrates the interaction between the user, frontend, backend, and Firebase services across various use cases. The diagram begins with the user logging into the app by providing their username and password, which are sent to the frontend. The frontend then communicates with FirebaseAuth to authenticate the user, returning the authentication result back to the frontend. Once logged in, the frontend sends a request to the backend server for the daily prompt, which is then retrieved and displayed to the user. Additionally, the diagram includes the process of the user taking a photo, where the frontend uploads the photo to the server, and the backend stores it in Firestore, updating the user's story page. The sequence diagram effectively demonstrates the flow of interactions and the time-based dependencies between these objects, ensuring the user experience is seamless and efficient.
 
  ![Sequence Diagram](images/sequence.png)
