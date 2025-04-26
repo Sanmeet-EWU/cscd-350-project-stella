@@ -91,7 +91,8 @@ TakeThat! follows a MVC design because we can divide our application into each o
  Step by step for uploading goes as follows. When the user is authenticated our prompt class will notify them of the daily prompt. User can then use the TakePhoto to capture a photo object and upload that photo. Database will be updated with that photo and then the StoryPage will be able to correctly show the us updated story.
  
  ![Activity Diagram](images/activity.png)
- 
+
+ ![Sequence Diagram](images/sequence.png)
  
  
  
