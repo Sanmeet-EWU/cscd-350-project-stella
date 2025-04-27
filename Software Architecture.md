@@ -14,13 +14,27 @@ TakeThat! is a social media mobile application for androids. Users will be promp
 
 ### Data Storage
 
-Flutter provides many tools and one of them is the Firebase Cloud Firestore which uses a NoSQL database system.
+Flutter provides many tools and one of them is the Firebase Cloud Firestore which uses a NoSQL database system. Firestore organizes data into documents and collections, allowing flexible and scalable data models. Major types of data stored include:
+
+- User Profiles: Username, email, profile picture, friend list.
+- Feed: Daily picture submissions.
+- Friendships: Relationships between users, friend requests, and approvals.
+- Authentication Records: Managed through Firebase Authentication but linked to user data in Firestore.
+- Notifications: Notifications related to friend activity or story prompts.
+
+Each user document will reference their story documents and friend relationships, creating an organized and efficient retrieval structure. Media files like pictures are stored in Firebase Cloud Storage, with links saved in Firestore.
+
+![ER Diagram](images/er.png)
+ 
 
 ### Assumptions
 
-- User will have internet access.
-- Firebase services will maintain availability.
-- Low amount of users to maintain small scale use
+-	User will have internet access.
+-	Firebase services will maintain availability.
+-	The app is designed for small to moderate user concurrency, with scalability in mind.
+-	Users’ devices will support necessary permissions (camera, notifications, storage).
+-	Mobile devices will run compatible Android versions for Flutter and Firebase SDKs.
+
 
 
 ## Software Design
