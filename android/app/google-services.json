@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "743499905839",
+    "project_id": "takethat-fefd0",
+    "storage_bucket": "takethat-fefd0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743499905839:android:30bceebed0a0eccf6d3fda",
+        "android_client_info": {
+          "package_name": "com.example.hello"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCnSrj83eZnXvsjC1Xb_oHdp8-UuRr7Eg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
