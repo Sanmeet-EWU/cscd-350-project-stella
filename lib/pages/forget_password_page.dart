@@ -1,9 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'login_page.dart';
-import 'recovery_password_pass.dart';
 
-class ForgetPasswordPage extends StatelessWidget {
+class ForgetPasswordPage extends StatefulWidget {
   const ForgetPasswordPage({super.key});
+
+  @override
+  State<ForgetPasswordPage> createState() => _ForgetPasswordPageState();
+}
+
+class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
+  final TextEditingController _emailController = TextEditingController();
+
+  Future<void> _sendResetEmail() async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(
+        email: _emailController.text.trim(),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Password reset email sent!')),
+      );
+    } catch (e) {
+      print('Password reset error: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +53,8 @@ class ForgetPasswordPage extends StatelessWidget {
                 'Forget Password',
                 style: TextStyle(
                   shadows: [
-                    Shadow(blurRadius: 10.0,
+                    Shadow(
+                      blurRadius: 10.0,
                       color: Colors.white,
                       offset: Offset(5, 5),
                     ),
@@ -35,75 +65,68 @@ class ForgetPasswordPage extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(bottom: 200, left: 0, right: 0,
-                child:Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 350,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Email',
-                          icon: Icon(Icons.email),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(width: 1.0, color: Colors.grey), // normal underline
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(width: 1.0, color: Colors.pink), // underline when focused
-                          ),
+            Positioned(
+              bottom: 200,
+              left: 0,
+              right: 0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 350,
+                    child: TextFormField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(
+                        hintText: 'Email',
+                        icon: Icon(Icons.email),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(width: 1.0, color: Colors.grey),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(width: 1.0, color: Colors.pink),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 40),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
+                  ),
+                  const SizedBox(height: 40),
+                  ElevatedButton(
+                    onPressed: _sendResetEmail,
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.pink[50],
+                      padding: const EdgeInsets.symmetric(horizontal: 57, vertical: 15),
+                    ),
+                    child: const Text('Send Reset Email'),
+                  ),
+                  const SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 32),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => const RecoveryPasswordPage()), //change this to the external
+                          MaterialPageRoute(builder: (context) => const LoginPage()),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.black,
-                        backgroundColor: Colors.pink[50],
-                        padding: const EdgeInsets.symmetric(horizontal: 57, vertical: 15),
-                      ),
-                      child: const Text('Send email'),
-                    ),
-                    const SizedBox(height: 15),
-                    Positioned(
-                      width: 350,
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 32), // Add right padding
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const LoginPage()),
-                            );
-                          },
-                          child: Align(
-                            alignment: Alignment(0,100),
-                            child: Text(
-                              'Already have account? Login',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Already have an account? Login',
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ))
-
-            // You can add more widgets below, like form or buttons
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
