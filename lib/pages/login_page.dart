@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'signup_page.dart';
 import 'forget_password_page.dart';
-import 'home_page.dart'; // Destination after login
+import 'home_page.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -53,20 +54,28 @@ class _LoginPageState extends State<LoginPage> {
         ),
         child: Stack(
           children: [
-            const Positioned(
+            Positioned(
               top: 85,
               left: 50,
               child: Text(
                 'Welcome',
                 style: TextStyle(
-                  shadows: [Shadow(blurRadius: 10.0, color: Colors.white, offset: Offset(5, 5))],
+                  shadows: [
+                    Shadow(
+                        blurRadius: 10.0,
+                        color: Colors.white,
+                        offset: Offset(5, 5),
+                    )
+                  ],
                   fontSize: 40,
                   color: Colors.deepPurple,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
+              )   .animate()
+                  .shimmer(duration: 1000.ms)
+                  .slide(begin: const Offset(0, -0.2), duration: 600.ms),
             ),
-            const Positioned(
+            Positioned(
               top: 140,
               left: 50,
               child: Text(
@@ -77,7 +86,10 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.deepPurple,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
+              )
+                .animate()
+                .shimmer(duration: 1000.ms)
+                .slide(begin: const Offset(0, -0.2), duration: 600.ms),
             ),
             Positioned(
               bottom: 100,
@@ -152,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 57, vertical: 15),
                     ),
                     child: const Text('Log in'),
-                  ),
+                  ) ,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
@@ -183,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 55, vertical: 15),
                     ),
                     child: const Text('Sign up'),
-                  ),
+                  )
                 ],
               ),
             ),

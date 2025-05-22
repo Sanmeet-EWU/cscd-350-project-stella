@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login_page.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
   const ForgetPasswordPage({super.key});
@@ -46,7 +47,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
         ),
         child: Stack(
           children: [
-            const Positioned(
+            Positioned(
               top: 250,
               left: 70,
               child: Text(
@@ -63,7 +64,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                   color: Colors.deepPurple,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
+              ) .animate().flip(duration: 1000.ms),
             ),
             Positioned(
               bottom: 200,
@@ -111,7 +112,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                       child: const Align(
                         alignment: Alignment.center,
                         child: Text(
-                          'Already have an account? Login',
+                          '        Already have an account? Login',
                           style: TextStyle(
                             fontSize: 15,
                             color: Colors.black,

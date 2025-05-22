@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -66,7 +67,7 @@ class _SignupPageState extends State<SignupPage> {
         ),
         child: Stack(
           children: [
-            const Positioned(
+            Positioned(
               top: 85,
               left: 50,
               child: Text(
@@ -83,9 +84,11 @@ class _SignupPageState extends State<SignupPage> {
                   color: Colors.deepPurple,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
+              )   .animate()
+                  .shimmer(duration: 1000.ms)
+                  .slide(begin: const Offset(0, -0.2), duration: 600.ms),
             ),
-            const Positioned(
+            Positioned(
               top: 140,
               left: 50,
               child: Text(
@@ -102,7 +105,9 @@ class _SignupPageState extends State<SignupPage> {
                   color: Colors.deepPurple,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
+              )   .animate()
+                  .shimmer(duration: 1000.ms)
+                  .slide(begin: const Offset(0, -0.2), duration: 600.ms),
             ),
             Positioned(
               bottom: 100,
