@@ -1,16 +1,19 @@
-# cscd350_takethat
+# Project Description
 
-A new Flutter project.
+TakeThat! Is a fun and modern take of social media. 
 
-## Getting Started
+We envision an mobile application where users can get notified to take a daily photo completing some sort of challenge.
 
-This project is a starting point for a Flutter application.
+Social media today creates pressure to be perfect, causing stress and inauthentic interactions.
 
-A few resources to get you started if this is your first Flutter project:
+# Intended User
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Teens and young adults looking for a more genuine way to connect with friends online.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Why This Problem Exists
+
+With the age of social media, people often find themselves trying to be picture perfect. We want you to live in the moment. A place where you and I can communicate without the additional worries social media entails.
+
+# How Our Solution Helps
+
+TakeThat! encourages real moments with limited-time prompts—making sharing fun, fast, and worry-free.

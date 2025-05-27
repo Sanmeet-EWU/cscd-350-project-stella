@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 
@@ -18,6 +19,17 @@ void main() {
     });
 
     //add more test
+    test('Signup succeeds with valid email and password', () async {
+      final auth = MockFirebaseAuth();
+
+      final userCred = await auth.createUserWithEmailAndPassword(
+        email: 'newuser@test.com',
+        password: 'securePassword123',
+      );
+
+      expect(userCred.user, isNotNull);
+      expect(userCred.user?.email, 'newuser@test.com');
+    });
 
   });
 }

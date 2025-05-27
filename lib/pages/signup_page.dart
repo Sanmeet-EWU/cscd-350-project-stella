@@ -120,6 +120,12 @@ class _SignupPageState extends State<SignupPage> {
                     width: 350,
                     child: TextFormField(
                       controller: _usernameController,
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty){
+                          return 'Username cannot be empty';
+                        }
+                        return null;
+                      },
                       decoration: const InputDecoration(
                         hintText: 'Username',
                         icon: Icon(Icons.person),
@@ -139,6 +145,12 @@ class _SignupPageState extends State<SignupPage> {
                     width: 350,
                     child: TextFormField(
                       controller: _emailController,
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty){
+                          return 'Email cannot be empty';
+                        }
+                        return null;
+                      },
                       decoration: const InputDecoration(
                         hintText: 'Email',
                         icon: Icon(Icons.email),
@@ -158,6 +170,12 @@ class _SignupPageState extends State<SignupPage> {
                     child: TextFormField(
                       controller: _passwordController,
                       obscureText: true,
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty){
+                          return 'Password cannot be empty';
+                        }
+                        return null;
+                      },
                       decoration: const InputDecoration(
                         hintText: 'Password',
                         icon: Icon(Icons.password),
