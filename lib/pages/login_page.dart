@@ -36,9 +36,9 @@ class _LoginPageState extends State<LoginPage> {
       );
     } catch (e) {
       print('Login error: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login failed: $e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Login failed: $e')));
     }
   }
 
@@ -58,20 +58,21 @@ class _LoginPageState extends State<LoginPage> {
               top: 85,
               left: 50,
               child: Text(
-                'Welcome',
-                style: TextStyle(
-                  shadows: [
-                    Shadow(
-                        blurRadius: 10.0,
-                        color: Colors.white,
-                        offset: Offset(5, 5),
-                    )
-                  ],
-                  fontSize: 40,
-                  color: Colors.deepPurple,
-                  fontWeight: FontWeight.bold,
-                ),
-              )   .animate()
+                    'Welcome',
+                    style: TextStyle(
+                      shadows: [
+                        Shadow(
+                          blurRadius: 10.0,
+                          color: Colors.white,
+                          offset: Offset(5, 5),
+                        ),
+                      ],
+                      fontSize: 40,
+                      color: Colors.deepPurple,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                  .animate()
                   .shimmer(duration: 1000.ms)
                   .slide(begin: const Offset(0, -0.2), duration: 600.ms),
             ),
@@ -79,17 +80,23 @@ class _LoginPageState extends State<LoginPage> {
               top: 140,
               left: 50,
               child: Text(
-                'Back',
-                style: TextStyle(
-                  shadows: [Shadow(blurRadius: 10.0, color: Colors.white, offset: Offset(5, 5))],
-                  fontSize: 40,
-                  color: Colors.deepPurple,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
-                .animate()
-                .shimmer(duration: 1000.ms)
-                .slide(begin: const Offset(0, -0.2), duration: 600.ms),
+                    'Back',
+                    style: TextStyle(
+                      shadows: [
+                        Shadow(
+                          blurRadius: 10.0,
+                          color: Colors.white,
+                          offset: Offset(5, 5),
+                        ),
+                      ],
+                      fontSize: 40,
+                      color: Colors.deepPurple,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                  .animate()
+                  .shimmer(duration: 1000.ms)
+                  .slide(begin: const Offset(0, -0.2), duration: 600.ms),
             ),
             Positioned(
               bottom: 100,
@@ -106,10 +113,16 @@ class _LoginPageState extends State<LoginPage> {
                         hintText: 'Email',
                         icon: Icon(Icons.email),
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(width: 1.0, color: Colors.grey),
+                          borderSide: BorderSide(
+                            width: 1.0,
+                            color: Colors.grey,
+                          ),
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(width: 1.0, color: Colors.pink),
+                          borderSide: BorderSide(
+                            width: 1.0,
+                            color: Colors.pink,
+                          ),
                         ),
                       ),
                     ),
@@ -124,10 +137,16 @@ class _LoginPageState extends State<LoginPage> {
                         hintText: 'Password',
                         icon: Icon(Icons.lock),
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(width: 1.0, color: Colors.grey),
+                          borderSide: BorderSide(
+                            width: 1.0,
+                            color: Colors.grey,
+                          ),
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(width: 1.0, color: Colors.pink),
+                          borderSide: BorderSide(
+                            width: 1.0,
+                            color: Colors.pink,
+                          ),
                         ),
                       ),
                     ),
@@ -141,7 +160,9 @@ class _LoginPageState extends State<LoginPage> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const ForgetPasswordPage()),
+                            MaterialPageRoute(
+                              builder: (context) => const ForgetPasswordPage(),
+                            ),
                           );
                         },
                         child: const Text(
@@ -161,10 +182,13 @@ class _LoginPageState extends State<LoginPage> {
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.black,
                       backgroundColor: Colors.pink[50],
-                      padding: const EdgeInsets.symmetric(horizontal: 57, vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 57,
+                        vertical: 15,
+                      ),
                     ),
                     child: const Text('Log in'),
-                  ) ,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
@@ -186,16 +210,21 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const SignupPage()),
+                        MaterialPageRoute(
+                          builder: (context) => const SignupPage(),
+                        ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.black,
                       backgroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 55, vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 55,
+                        vertical: 15,
+                      ),
                     ),
                     child: const Text('Sign up'),
-                  )
+                  ),
                 ],
               ),
             ),
