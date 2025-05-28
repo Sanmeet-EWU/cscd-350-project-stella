@@ -14,6 +14,7 @@ For UI tests, we test the design and layout. We check that:
 - Buttons and text fields show up
 - Pages look right and respond to taps
 - The user can move between screens smoothly
+- Check UI design of user_posts_page, story_page, user_home_page
 
 
 For unit tests, we test key features like:
@@ -21,9 +22,8 @@ For unit tests, we test key features like:
 - Sign up (success,..)
 - Login (correct and wrong password)
 - Forget password (success and error)
-- user_posts_page
-- story_page
-- user_home_page
 
-We Wrote enough tests to hit 80 percent coverage and mostly focused on UI since not enough functionality is implemented to test. 
+We wrote enough tests to hit >70 percent coverage and mostly focused on UI since not enough functionality is implemented to test. 
+However, we still have some unit tests to check if our Firebase login and signup work correctly. 
+Even though our app isn’t finished yet, these tests help us make sure the basic auth functions are working.
 

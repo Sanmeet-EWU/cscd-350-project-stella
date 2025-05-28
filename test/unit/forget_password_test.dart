@@ -1,21 +1,23 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Forget Password Unit Tests', () {
     late MockFirebaseAuth mockAuth;
-
     setUp(() {
       mockAuth = MockFirebaseAuth();
     });
 
     test('Send password reset email - success', () async {
       await mockAuth.sendPasswordResetEmail(email: 'test@example.com');
-      expect(() async => await mockAuth.sendPasswordResetEmail(email: 'test@example.com'), returnsNormally);
+      expect(
+        mockAuth.sendPasswordResetEmail(email: 'test@example.com'),
+        completes,
+      );
     });
 
-    test('Send password reset email - error', () async {
+    test('Send password reset email - fail', () async {
       try {
         throw FirebaseAuthException(code: 'invalid-email', message: 'Invalid email');
       } catch (e) {
@@ -23,6 +25,5 @@ void main() {
         expect((e as FirebaseAuthException).code, 'invalid-email');
       }
     });
-
   });
 }

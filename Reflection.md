@@ -3,7 +3,7 @@
 Working on this project was a great learning experience for our team. After designing UI pages and connecting them to the backend over the past few weeks, we moved on to testing. Testing was one of the challenging but important parts. At first, we thought it would be hard to test our app because most of it was UI-based. However, we learned that even UI apps can be tested, especially input validation, navigation, and interaction with Firebase.  We also learned how to use the flutter_test package, mocks, and coverage tools to support our testing goals. It took a while and errors, but we were able to write tests that helped improve our app.
 Team Contributions:
 
-- Ashley: wrote UI tests for the login and sign-up pages. She verified that input fields and buttons were working. She made sure widgets showed correctly and tested that navigation between pages was accurate.
+- Ashley: wrote UI tests for the login, sign-up, and setting pages. Verified that input fields and buttons were working. Made sure widgets showed correctly and tested that navigation between pages was accurate.
 
 - Zach:
 

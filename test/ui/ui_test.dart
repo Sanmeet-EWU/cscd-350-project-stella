@@ -35,8 +35,7 @@ void main() {
 
   //test 3
   testWidgets('Logout navigates to LoginPage', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: const SettingPage(),
+    await tester.pumpWidget(MaterialApp(home: const SettingPage(),
       routes: {
         '/login': (context) => const MockLoginPage(),
       },
@@ -51,6 +50,18 @@ void main() {
   });
 
   //test 4
+  testWidgets('SettingPage handles name change', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(home: SettingPage()));
+    await tester.tap(find.text('Change Name'));
+    await tester.pumpAndSettle();
+    // Enter new name
+    await tester.enterText(find.byType(TextField), 'Ashley');
+    await tester.tap(find.text('Save'));
+    await tester.pump();
+    expect(find.text('Name changed to Ashley'), findsOneWidget);
+  });
+
+  //test 5
   testWidgets('ForgetPasswordPage sends reset email', (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(home: ForgetPasswordPage()));
     final emailField = find.byType(TextFormField);
