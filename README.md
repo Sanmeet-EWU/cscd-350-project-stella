@@ -17,3 +17,11 @@ With the age of social media, people often find themselves trying to be picture 
 # How Our Solution Helps
 
 TakeThat! encourages real moments with limited-time prompts—making sharing fun, fast, and worry-free.
+
+# Running Tests
+
+While in the project directory in the terminal / powershell run " flutter test" 
+
+
+
+
