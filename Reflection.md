@@ -5,7 +5,7 @@ Team Contributions:
 
 - Ashley: wrote UI tests for the login, sign-up, and setting pages. Verified that input fields and buttons were working. Made sure widgets showed correctly and tested that navigation between pages was accurate.
 
-- Zach:
+- Zach: Due to time restraints was not able to take part in testing. Will work on future tests to hopefully reach the 90% threshold.
 
 - Brayden: Wrote tests for the UI elements of core pages such as story page, user home page and user posts. Learned along the way how to generate the coverage file and examine what pages still had very few tests which helped me pick which classes to write tests for. 
 
