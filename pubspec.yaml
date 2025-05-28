@@ -65,10 +65,7 @@
     # the material Icons class.
     uses-material-design: true
     assets:
-      - assets/welcome_bg.png
-      - assets/signup_bg.png
-      - assets/login_bg.png
-      - assets/logo.png
+      - assets/
   fonts:
     - family: Inter
       fonts:
