@@ -4,6 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 
 class UserHome extends StatefulWidget {
@@ -15,49 +17,91 @@ class UserHome extends StatefulWidget {
 
 class _UserHomeState extends State<UserHome> {
   File? _imageFile;
+  List<String> prompts = [];
+  String currentPrompt = '';
 
-
-
-Future<void> _takePhoto() async {
-  final picker = ImagePicker();
-  final pickedFile = await picker.pickImage(source: ImageSource.camera);
-
-  if (pickedFile != null) {
-    setState(() {
-      _imageFile = File(pickedFile.path);
-    });
-
-    // Step 1: Upload to Firebase Storage
+  @override
+  void initState(){
+    super.initState();
+    loadPrompts();
+  }
+  Future<void> loadPrompts() async {
     try {
-      final storageRef = FirebaseStorage.instance
-          .ref()
-          .child('user_photos')
-          .child('${DateTime.now().millisecondsSinceEpoch}.jpg');
+      // Get download URL for prompts.json in Firebase Storage
+      final storage = FirebaseStorage.instance;
+      String url = await storage.ref('prompt.json').getDownloadURL();
 
-      await storageRef.putFile(_imageFile!);
-      final downloadURL = await storageRef.getDownloadURL();
+      // Fetch the JSON file content using http
+      final response = await http.get(Uri.parse(url));
 
-      print('Photo uploaded. Download URL: $downloadURL');
+      if (response.statusCode == 200) {
+        List<dynamic> jsonList = json.decode(response.body);
+        prompts = jsonList.map((e) => e.toString()).toList();
 
-      // Step 2 Save download URL and metadata to database Add in extra feilds if you want
-      final user = FirebaseAuth.instance.currentUser;
-      if (user != null) {
-        await FirebaseFirestore.instance.collection('photos').add({
-          'userId': user.uid,
-          'photoUrl': downloadURL,
-          'timestamp': FieldValue.serverTimestamp(),
-          // add extra feilds here to store in database
+        // Calculate today's prompt index by days since fixed date
+        final baseDate = DateTime(2025, 1, 1);
+        final today = DateTime.now();
+        final diffDays = today.difference(baseDate).inDays;
+        final promptIndex = diffDays % prompts.length;
+
+        setState(() {
+          currentPrompt = prompts[promptIndex];
         });
-        print('Metadata saved to Firestore.');
       } else {
-        print('No user is signed in.');
+        setState(() {
+          currentPrompt = 'Failed to load prompts.';
+        });
       }
-
     } catch (e) {
-      print('Upload or Firestore write failed: $e');
+      setState(() {
+        currentPrompt = 'Error loading prompts.';
+      });
+      print('Error loading prompts: $e');
     }
   }
-}
+
+
+
+  Future<void> _takePhoto() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+
+      // Step 1: Upload to Firebase Storage
+      try {
+        final storageRef = FirebaseStorage.instance
+            .ref()
+            .child('user_photos')
+            .child('${DateTime.now().millisecondsSinceEpoch}.jpg');
+
+        await storageRef.putFile(_imageFile!);
+        final downloadURL = await storageRef.getDownloadURL();
+
+        print('Photo uploaded. Download URL: $downloadURL');
+
+        // Step 2 Save download URL and metadata to database Add in extra feilds if you want
+        final user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          await FirebaseFirestore.instance.collection('photos').add({
+            'userId': user.uid,
+            'photoUrl': downloadURL,
+            'timestamp': FieldValue.serverTimestamp(),
+            // add extra feilds here to store in database
+          });
+          print('Metadata saved to Firestore.');
+        } else {
+          print('No user is signed in.');
+        }
+
+      } catch (e) {
+        print('Upload or Firestore write failed: $e');
+      }
+    }
+  }
 
 
 
@@ -85,16 +129,20 @@ Future<void> _takePhoto() async {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Sweet',
-              style: TextStyle(
-                fontFamily: "Inter",
-                fontSize: 50,
-                color: Colors.black,
-                fontWeight: FontWeight.w900,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                currentPrompt,
+                style: const TextStyle(
+                  fontFamily: "Inter",
+                  fontSize: 30,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w700,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
+
             const SizedBox(height: 30),
             if (_imageFile != null)
               Image.file(_imageFile!, height: 250)

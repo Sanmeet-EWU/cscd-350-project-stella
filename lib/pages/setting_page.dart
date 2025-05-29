@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
+import '../main.dart'; // to access themeNotifier
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -9,8 +10,8 @@ class SettingPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
-        centerTitle: true, // optional: centers the title
-        backgroundColor: Colors.purple[50],
+        centerTitle: true,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: ListView(
         children: [
@@ -18,58 +19,51 @@ class SettingPage extends StatelessWidget {
             leading: const Icon(Icons.person),
             title: const Text('Change Name'),
             onTap: () {
+              String newName = '';
               showDialog(
                 context: context,
-                builder: (context) {
-                  String newName = '';
-                  return AlertDialog(
-                    title: const Text('Change Name'),
-                    content: TextField(
-                      decoration: const InputDecoration(
-                        hintText: 'Enter new name',
-                      ),
-                      onChanged: (value) {
-                        newName = value;
+                builder: (context) => AlertDialog(
+                  title: const Text('Change Name'),
+                  content: TextField(
+                    decoration: const InputDecoration(hintText: 'Enter new name'),
+                    onChanged: (value) => newName = value,
+                  ),
+                  actions: [
+                    TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Name changed to $newName')),
+                        );
                       },
+                      child: const Text('Save'),
                     ),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          // Handle saving the new name here
-                          Navigator.pop(context);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Name changed to $newName')),
-                          );
-                        },
-                        child: const Text('Save'),
-                      ),
-                    ],
-                  );
-                },
+                  ],
+                ),
               );
             },
           ),
           ListTile(
-            leading: const Icon(Icons.password),
-            title: const Text('Change Password'),
-          ),
-          ListTile(
             leading: const Icon(Icons.color_lens),
-            title: const Text('Theme'),
+            title: const Text('Dark Mode'),
+            trailing: Switch(
+              value: themeNotifier.value == ThemeMode.dark,
+              onChanged: (bool value) {
+                themeNotifier.value = value ? ThemeMode.dark : ThemeMode.light;
+              },
+            ),
           ),
           ListTile(
-            leading: const Icon(Icons.logout_rounded),
+            leading: const Icon(Icons.logout),
             title: const Text('Log out'),
-            onTap:(){
-              Navigator.push(
+            onTap: () {
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginPage()),
-              );},
-          )
+              );
+            },
+          ),
         ],
       ),
     );

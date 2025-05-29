@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'view_profile_page.dart';
+import 'setting_page.dart';
 
 class FriendsPage extends StatefulWidget {
   const FriendsPage({super.key});
@@ -60,14 +61,27 @@ class _FriendsPageState extends State<FriendsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
         automaticallyImplyLeading: false,
+
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Image.asset('assets/logo.png', height: 150)],
+          children: [Image.asset('assets/logo1.png', height: 150)],
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings, color: Colors.black),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingPage()),
+              );
+            },
+          )
+        ]
+
       ),
 
       body: Column(
