@@ -56,6 +56,27 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
     }
   }
 
+  Future<void> _removeFriend() async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser == null) {
+      return;
+    }
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentUser.uid)
+        .collection('friends')
+        .doc(widget.userId)
+        .delete();
+    setState(() {
+      _isFriend = false;
+    });
+    if (mounted) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Friend removed!')));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentUser = FirebaseAuth.instance.currentUser;
@@ -141,19 +162,41 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 30),
+                // ...existing code...
                 if (currentUserId != null && currentUserId != widget.userId)
                   _loadingFriendStatus
                       ? const CircularProgressIndicator()
-                      : ElevatedButton.icon(
-                        onPressed: _isFriend! ? null : _addFriend,
-                        icon: Icon(
-                          _isFriend! ? Icons.check_circle : Icons.person_add,
-                        ),
-                        label: Text(_isFriend! ? 'Friend Added' : 'Add Friend'),
+                      : _isFriend!
+                      ? ElevatedButton.icon(
+                        onPressed: _removeFriend,
+                        icon: const Icon(Icons.person_remove),
+                        label: const Text('Remove Friend'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: _isFriend! ? Colors.green : null,
-                          foregroundColor: _isFriend! ? Colors.white : null,
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
                         ),
+                      )
+                      : ElevatedButton.icon(
+                        onPressed: _addFriend,
+                        icon: const Icon(Icons.person_add),
+                        label: const Text('Add Friend'),
+                      ),
+                // ...existing code...
+                const SizedBox(height: 30),
+                if (currentUserId != null && currentUserId == widget.userId)
+                  _loadingFriendStatus
+                      ? const CircularProgressIndicator()
+                      : ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.edit),
+                        label: const Text('Edit Profile'),
                       ),
               ],
             ),
