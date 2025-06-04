@@ -162,7 +162,6 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 30),
-                // ...existing code...
                 if (currentUserId != null && currentUserId != widget.userId)
                   _loadingFriendStatus
                       ? const CircularProgressIndicator()
@@ -181,7 +180,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                         icon: const Icon(Icons.person_add),
                         label: const Text('Add Friend'),
                       ),
-                // ...existing code...
+
                 const SizedBox(height: 30),
                 if (currentUserId != null && currentUserId == widget.userId)
                   _loadingFriendStatus
