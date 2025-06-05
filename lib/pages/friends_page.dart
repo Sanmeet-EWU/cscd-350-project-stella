@@ -79,9 +79,8 @@ class _FriendsPageState extends State<FriendsPage> {
                 MaterialPageRoute(builder: (context) => const SettingPage()),
               );
             },
-          )
-        ]
-
+          ),
+        ],
       ),
 
       body: Column(
@@ -105,15 +104,6 @@ class _FriendsPageState extends State<FriendsPage> {
                     user['uid'] ??
                     user['id']; // Adjust this if your user map uses a different key
                 return ListTile(
-                  leading:
-                      user['profilePhotoUrl'] != null &&
-                              user['profilePhotoUrl'].isNotEmpty
-                          ? CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              user['profilePhotoUrl'],
-                            ),
-                          )
-                          : const CircleAvatar(child: Icon(Icons.person)),
                   title: Text(user['username'] ?? 'No Name'),
                   onTap: () {
                     if (userId != null) {
