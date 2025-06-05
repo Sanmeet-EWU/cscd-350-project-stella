@@ -101,6 +101,12 @@ class _StoryPageState extends State<StoryPage> {
           final friends = friendsSnapshot.data!;
           final friendsUserIds = friends.map((f) => f['id'] as String).toList();
 
+          //Add current user ID to see their own stories
+          final currentUserId = FirebaseAuth.instance.currentUser!.uid;
+          if(!friendsUserIds.contains(currentUserId)){
+            friendsUserIds.add(currentUserId);
+          }
+
           return StreamBuilder<List<Map<String, dynamic>>>(
             stream: getStoriesStream(friendsUserIds),
             builder: (context, snapShot) {

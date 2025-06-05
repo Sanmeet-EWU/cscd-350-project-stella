@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'story_page.dart';
 
 
 class UserHome extends StatefulWidget {
@@ -86,13 +87,21 @@ class _UserHomeState extends State<UserHome> {
         // Step 2 Save download URL and metadata to database Add in extra feilds if you want
         final user = FirebaseAuth.instance.currentUser;
         if (user != null) {
-          await FirebaseFirestore.instance.collection('photos').add({
+          await FirebaseFirestore.instance.collection('stories').add({
             'userId': user.uid,
-            'photoUrl': downloadURL,
+            'imageUrl': downloadURL,
             'timestamp': FieldValue.serverTimestamp(),
             // add extra feilds here to store in database
           });
-          print('Metadata saved to Firestore.');
+          print('Story saved to Firestore.');
+          setState(() {
+            _imageFile = null;
+          });
+          // Step 3 Navigate to the StoryPage
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const StoryPage()),
+          );
         } else {
           print('No user is signed in.');
         }
