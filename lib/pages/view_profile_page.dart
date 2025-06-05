@@ -21,6 +21,9 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
     _checkFriendStatus();
   }
 
+  /**
+ * Get instance of current user and check check whether 
+ */
   Future<void> _checkFriendStatus() async {
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) return;
@@ -37,6 +40,9 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
     });
   }
 
+  /**
+ * Add user to current user's friends collection
+ */
   Future<void> _addFriend() async {
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) return;
@@ -56,6 +62,9 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
     }
   }
 
+  /**
+ * remove user from current user's friends collection
+ */
   Future<void> _removeFriend() async {
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) {
@@ -71,6 +80,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
       _isFriend = false;
     });
     if (mounted) {
+      // if widget is mounted show snackbar
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('Friend removed!')));
@@ -93,6 +103,10 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
           children: [Image.asset('assets/logo.png', height: 150)],
         ),
       ),
+      /**
+       * Get instance of user document
+       * 
+       */
       body: FutureBuilder<DocumentSnapshot>(
         future:
             FirebaseFirestore.instance
@@ -109,7 +123,6 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
           final data = snapshot.data!.data() as Map<String, dynamic>;
           final photoUrl = (data['profilePhotoUrl'] ?? '').toString();
           final username = (data['username'] ?? 'No Name').toString();
-          final bio = (data['bio'] ?? '').toString();
 
           return Padding(
             padding: const EdgeInsets.all(16.0),
@@ -156,11 +169,6 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Text(
-                  bio,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 16),
-                ),
                 const SizedBox(height: 30),
                 if (currentUserId != null && currentUserId != widget.userId)
                   _loadingFriendStatus
@@ -171,7 +179,10 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                         icon: const Icon(Icons.person_remove),
                         label: const Text('Remove Friend'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          backgroundColor: Colors.black,
                           foregroundColor: Colors.white,
                         ),
                       )
@@ -179,9 +190,16 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                         onPressed: _addFriend,
                         icon: const Icon(Icons.person_add),
                         label: const Text('Add Friend'),
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          backgroundColor: Colors.black,
+                          foregroundColor: Colors.white,
+                        ),
                       ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 30, width: 20),
                 if (currentUserId != null && currentUserId == widget.userId)
                   _loadingFriendStatus
                       ? const CircularProgressIndicator()
@@ -194,8 +212,15 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                             ),
                           );
                         },
-                        icon: const Icon(Icons.edit),
+                        icon: const Icon(Icons.person_2_outlined),
                         label: const Text('Edit Profile'),
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          backgroundColor: Colors.black,
+                          foregroundColor: Colors.white,
+                        ),
                       ),
               ],
             ),

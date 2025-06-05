@@ -59,7 +59,10 @@ class _StoryPageState extends State<StoryPage> {
     }
     return FirebaseFirestore.instance
         .collection('stories')
-        .where('userId', whereIn: friendsUserIds)
+        .where(
+          'userId',
+          whereIn: [...friendsUserIds, FirebaseAuth.instance.currentUser?.uid],
+        )
         .orderBy('timestamp', descending: true)
         .snapshots()
         .map(
