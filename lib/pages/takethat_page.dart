@@ -95,6 +95,11 @@ class _UserHomeState extends State<UserHome> {
           setState(() {
             _imageFile = null;
           });
+          // Step 3 Navigate to the StoryPage
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const StoryPage()),
+          );
         } else {
           print('No user is signed in.');
         }

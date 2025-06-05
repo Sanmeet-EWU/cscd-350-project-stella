@@ -124,10 +124,24 @@ class _StoryPageState extends State<StoryPage> {
               }
 
               final stories = snapShot.data!;
+              final Map<String, dynamic> latestStoriesByUser = {};
+              for (final story in stories) {
+                final userId = story['userId'];
+                final timestamp = story['timestamp'];
+                if (!latestStoriesByUser.containsKey(userId) ||
+                    (timestamp is Timestamp &&
+                        latestStoriesByUser[userId]['timestamp'] is Timestamp &&
+                        timestamp.compareTo(
+                              latestStoriesByUser[userId]['timestamp'],
+                            ) >
+                            0)) {
+                  latestStoriesByUser[userId] = story;
+                }
+              }
               return ListView.builder(
-                itemCount: stories.length,
+                itemCount: latestStoriesByUser.length,
                 itemBuilder: (context, index) {
-                  final story = stories[index];
+                  final story = latestStoriesByUser.values.toList()[index];
                   return Card(
                     margin: const EdgeInsets.all(8.0),
                     child: Column(
@@ -183,7 +197,7 @@ class _StoryPageState extends State<StoryPage> {
                           height: 300,
                           errorBuilder:
                               (context, error, stackTrace) => Image.network(
-                                'https://th.bing.com/th/id/OIP.5hHo4ra49-t1KHefCe8WuwHaHa?w=172&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7con-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg',
+                                'https://static.vecteezy.com/system/resources/previews/036/280/651/original/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg',
                               ),
                         ),
                       ],
