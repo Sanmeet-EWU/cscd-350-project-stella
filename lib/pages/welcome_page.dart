@@ -1,9 +1,7 @@
-import 'package:cscd350_takethat/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'signup_page.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'setting_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});

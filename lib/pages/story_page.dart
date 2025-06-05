@@ -106,7 +106,7 @@ class _StoryPageState extends State<StoryPage> {
 
           //Add current user ID to see their own stories
           final currentUserId = FirebaseAuth.instance.currentUser!.uid;
-          if(!friendsUserIds.contains(currentUserId)){
+          if (!friendsUserIds.contains(currentUserId)) {
             friendsUserIds.add(currentUserId);
           }
 
@@ -153,9 +153,13 @@ class _StoryPageState extends State<StoryPage> {
                                     as Map<String, dynamic>;
 
                             return ListTile(
+                              contentPadding: const EdgeInsets.all(8.0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
                               leading: CircleAvatar(
                                 backgroundImage: NetworkImage(
-                                  userData['profileImageUrl'] ??
+                                  userData['profilePhotoUrl'] ??
                                       'https://www.pixelstalk.net/wp-content/uploads/2016/10/Blank-Wallpaper-HD.jpg',
                                 ),
                               ),
@@ -166,6 +170,7 @@ class _StoryPageState extends State<StoryPage> {
                                     ? (story['timestamp'] as Timestamp)
                                         .toDate()
                                         .toString()
+                                        .split(' ')[0]
                                     : '',
                               ),
                             );
@@ -178,7 +183,7 @@ class _StoryPageState extends State<StoryPage> {
                           height: 300,
                           errorBuilder:
                               (context, error, stackTrace) => Image.network(
-                                'https://static.vecteezy.com/system/resources/previews/036/280/651/original/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg',
+                                'https://th.bing.com/th/id/OIP.5hHo4ra49-t1KHefCe8WuwHaHa?w=172&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7con-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg',
                               ),
                         ),
                       ],

@@ -1,4 +1,5 @@
 import 'package:cscd350_takethat/pages/home_page.dart';
+import 'package:cscd350_takethat/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,9 +22,6 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
     _checkFriendStatus();
   }
 
-  /**
- * Get instance of current user and check check whether 
- */
   Future<void> _checkFriendStatus() async {
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) return;
@@ -40,9 +38,6 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
     });
   }
 
-  /**
- * Add user to current user's friends collection
- */
   Future<void> _addFriend() async {
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) return;
@@ -62,9 +57,6 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
     }
   }
 
-  /**
- * remove user from current user's friends collection
- */
   Future<void> _removeFriend() async {
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) {
@@ -103,10 +95,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
           children: [Image.asset('assets/logo.png', height: 150)],
         ),
       ),
-      /**
-       * Get instance of user document
-       * 
-       */
+
       body: FutureBuilder<DocumentSnapshot>(
         future:
             FirebaseFirestore.instance
@@ -140,6 +129,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                         ),
                       );
                     },
+                    //arrow back icon
                     child: const Icon(
                       Icons.arrow_back,
                       color: Colors.black,
@@ -160,7 +150,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                                 as ImageProvider,
                   ),
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 30),
                 Text(
                   username,
                   style: const TextStyle(
@@ -208,7 +198,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HomePage(),
+                              builder: (context) => const SettingPage(),
                             ),
                           );
                         },

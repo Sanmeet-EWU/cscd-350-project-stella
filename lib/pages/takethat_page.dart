@@ -8,7 +8,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'story_page.dart';
 
-
 class UserHome extends StatefulWidget {
   const UserHome({super.key});
 
@@ -22,10 +21,11 @@ class _UserHomeState extends State<UserHome> {
   String currentPrompt = '';
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     loadPrompts();
   }
+
   Future<void> loadPrompts() async {
     try {
       // Get download URL for prompts.json in Firebase Storage
@@ -61,8 +61,6 @@ class _UserHomeState extends State<UserHome> {
     }
   }
 
-
-
   Future<void> _takePhoto() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.camera);
@@ -97,22 +95,14 @@ class _UserHomeState extends State<UserHome> {
           setState(() {
             _imageFile = null;
           });
-          // Step 3 Navigate to the StoryPage
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const StoryPage()),
-          );
         } else {
           print('No user is signed in.');
         }
-
       } catch (e) {
         print('Upload or Firestore write failed: $e');
       }
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {

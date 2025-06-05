@@ -1,10 +1,39 @@
-import 'package:cscd350_takethat/pages/home_page.dart';
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'login_page.dart';
 import '../main.dart'; // to access themeNotifier
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
+
+  Future<void> uploadProfilePicture() async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser == null) return;
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 50,
+    );
+    if (pickedFile == null) {
+      return;
+    }
+    final file = File(pickedFile.path);
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child('profile_photo')
+        .child('${currentUser.uid}.jpg');
+    await ref.putFile(file);
+    final photoUrl = await ref.getDownloadURL();
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentUser.uid)
+        .update({'profilePhotoUrl': photoUrl});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +83,13 @@ class SettingPage extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: const Icon(Icons.photo_camera),
+            title: const Text('Change Profile Picture'),
+            onTap: () {
+              uploadProfilePicture();
+            },
+          ),
+          ListTile(
             leading: const Icon(Icons.color_lens),
             title: const Text('Dark Mode'),
             trailing: Switch(
@@ -72,16 +108,6 @@ class SettingPage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
-          ),
-          ElevatedButton.icon(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
-            },
-            icon: const Icon(Icons.edit),
-            label: const Text('Edit Profile'),
           ),
         ],
       ),
