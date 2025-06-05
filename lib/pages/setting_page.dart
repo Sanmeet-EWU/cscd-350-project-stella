@@ -1,3 +1,4 @@
+import 'package:cscd350_takethat/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 import '../main.dart'; // to access themeNotifier
@@ -22,25 +23,33 @@ class SettingPage extends StatelessWidget {
               String newName = '';
               showDialog(
                 context: context,
-                builder: (context) => AlertDialog(
-                  title: const Text('Change Name'),
-                  content: TextField(
-                    decoration: const InputDecoration(hintText: 'Enter new name'),
-                    onChanged: (value) => newName = value,
-                  ),
-                  actions: [
-                    TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Name changed to $newName')),
-                        );
-                      },
-                      child: const Text('Save'),
+                builder:
+                    (context) => AlertDialog(
+                      title: const Text('Change Name'),
+                      content: TextField(
+                        decoration: const InputDecoration(
+                          hintText: 'Enter new name',
+                        ),
+                        onChanged: (value) => newName = value,
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Name changed to $newName'),
+                              ),
+                            );
+                          },
+                          child: const Text('Save'),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
               );
             },
           ),
@@ -63,6 +72,16 @@ class SettingPage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
+          ),
+          ElevatedButton.icon(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
+            },
+            icon: const Icon(Icons.edit),
+            label: const Text('Edit Profile'),
           ),
         ],
       ),
