@@ -35,6 +35,28 @@ class SettingPage extends StatelessWidget {
         .update({'profilePhotoUrl': photoUrl});
   }
 
+  Future<void> deleteUserAccount() async {
+    try {
+      final currentUser = FirebaseAuth.instance.currentUser;
+      final uid = currentUser?.uid;
+
+      if (uid != null) {
+        // Delete user data in Firestore
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(uid)
+            .delete();
+
+        // Delete user from Firebase Auth
+        await currentUser?.delete();
+        print('User account deleted successfully');
+      }
+    } catch (e) {
+      print('Error deleting user: $e');
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,6 +121,35 @@ class SettingPage extends StatelessWidget {
               },
             ),
           ),
+          ListTile(
+            leading: const Icon(Icons.delete_forever),
+            title: const Text('Delete an account'),
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Oh no! Delete your account!?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('Nope.. keep it'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        deleteUserAccount();
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const LoginPage()),
+                        ); // close the dialog
+                      },
+                      child: const Text('Yup, bye!'),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Log out'),

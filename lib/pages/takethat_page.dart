@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'story_page.dart';
 
 class UserHome extends StatefulWidget {
   const UserHome({super.key});
@@ -19,6 +18,7 @@ class _UserHomeState extends State<UserHome> {
   File? _imageFile;
   List<String> prompts = [];
   String currentPrompt = '';
+  bool _challengeCompleted = false;
 
   @override
   void initState() {
@@ -94,6 +94,7 @@ class _UserHomeState extends State<UserHome> {
           print('Story saved to Firestore.');
           setState(() {
             _imageFile = null;
+            _challengeCompleted = true;
           });
         } else {
           print('No user is signed in.');
@@ -108,7 +109,7 @@ class _UserHomeState extends State<UserHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -143,8 +144,9 @@ class _UserHomeState extends State<UserHome> {
             ),
 
             const SizedBox(height: 30),
-            if (_imageFile != null)
-              Image.file(_imageFile!, height: 250)
+            if (_challengeCompleted)
+              const Text('Today challenge completed!', style: TextStyle(fontSize: 22, color: Colors.green, fontWeight: FontWeight.bold)
+              )
             else
               const Text('No photo taken yet.', style: TextStyle(fontSize: 18)),
             const SizedBox(height: 40),
