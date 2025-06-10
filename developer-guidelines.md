@@ -34,4 +34,5 @@ While in the project directory in the terminal/powershell run " flutter test"
 Add new test cases under takethat_project/test/  
 Tests have the naming convention 'feature_test.dart'
 
-### How to build a release of the software.
+### Developer release notes
+Make sure all version are up to dates for all software technologies used.
