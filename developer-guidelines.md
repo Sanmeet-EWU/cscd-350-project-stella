@@ -27,12 +27,11 @@ Step 5. Run android emulator from command line >Flutter/Launch Emulator
 Step 6. Run dart pages from takethat_project/lib/main.dart  
 
 ### How to test the software
+While in the project directory in the terminal/powershell run " flutter test"
 
 ### How to add new tests.
+Add new test cases under takethat_project/test/  
+Tests have the naming convention 'feature_test.dart'
 
-### How to build a release of the software. Describe any tasks
-that are not automated. For example, should a developer
-update a version number (in code and documentation) prior
-to invoking the build system? Are there any sanity checks a
-developer should perform after building a release?
+### How to build a release of the software.
 
