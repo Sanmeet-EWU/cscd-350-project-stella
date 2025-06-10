@@ -1,6 +1,6 @@
 ### Project Description
 
-TakeThat! Is a fun and modern take of social media. We envision an mobile application where users can get notified to take a daily photo completing some sort of challenge. Social media today creates pressure to be perfect, causing stress and inauthentic interactions.
+TakeThat! Is a fun and modern take of social media. We envision an mobile application where users can get notified to take a daily photo with a certain prompt. You can interact with friends and have your own social group. Social media today creates pressure to be perfect, causing stress and inauthentic interactions.
 
 ### Intended User
 
@@ -16,7 +16,7 @@ TakeThat! encourages real moments with limited-time prompts—making sharing fun
 
 ### Running Tests
 
-While in the project directory in the terminal/powershell run ``` flutter test ```
+Navigate to cscd-350-project-stella/takethat_app/test and run the command ``` flutter test ```
 
 
 
