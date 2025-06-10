@@ -24,10 +24,10 @@ In order to build the software you must download
 
 Step 1. Download all necessary frameworks  
 Step 2. Open VSCode and install Flutter and Dart extensions  
-Step 3. Ensure flutter path is in path variables and version is correct in takethat_project/pubspec.yaml  
-Step 4. Ensure gradle wrapper is compatible with java version in takethat_project/.gradle/wrapper/gradle-wrapper.properties  
-Step 5. Run android emulator from command line >Flutter/Launch Emulator  
-Step 6. Run dart pages from takethat_project/lib/main.dart  
+Step 3. Ensure flutter path is in path variables and version is correct in ```takethat_project/pubspec.yaml```    
+Step 4. Ensure gradle wrapper is compatible with java version in ```takethat_project/.gradle/wrapper/gradle-wrapper.properties```    
+Step 5. Run android emulator from command line ```>Flutter/Launch Emulator```  
+Step 6. Run dart pages from ```takethat_project/lib/main.dart```    
 
 ### How to test the software
 While in the test project directory in the terminal/powershell run ```flutter test```
