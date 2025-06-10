@@ -8,6 +8,8 @@ takethat_project
     -> lib  
     -> test  
     -> pubspec.yaml  
+README.md  
+developer-guidelines.md
 </pre>
 
 ### Folder contents
