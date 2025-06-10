@@ -1,13 +1,14 @@
 ### Layout
-<pre>
+
 Here is a high-level view of the folder structure for your reference.
-  
+<pre>
 diagrams  
     -> images    
 take_thatproject  
     -> lib  
     -> test  
     -> pubspec.yaml  
+</pre>
 
 ### Folder contents
 - 'diagrams' and 'images' contains necessary diagrams
@@ -34,4 +35,3 @@ Add new test cases under takethat_project/test/
 Tests have the naming convention 'feature_test.dart'
 
 ### How to build a release of the software.
-</pre>
