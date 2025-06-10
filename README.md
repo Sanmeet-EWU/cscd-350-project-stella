@@ -1,10 +1,6 @@
 # Project Description
 
-TakeThat! Is a fun and modern take of social media. 
-
-We envision an mobile application where users can get notified to take a daily photo completing some sort of challenge.
-
-Social media today creates pressure to be perfect, causing stress and inauthentic interactions.
+TakeThat! Is a fun and modern take of social media. We envision an mobile application where users can get notified to take a daily photo completing some sort of challenge. Social media today creates pressure to be perfect, causing stress and inauthentic interactions.
 
 # Intended User
 
@@ -20,7 +16,7 @@ TakeThat! encourages real moments with limited-time prompts—making sharing fun
 
 # Running Tests
 
-While in the project directory in the terminal / powershell run " flutter test" 
+While in the project directory in the terminal/powershell run " flutter test" 
 
 
 
