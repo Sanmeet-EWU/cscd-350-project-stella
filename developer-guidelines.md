@@ -37,4 +37,4 @@ Add new test cases under takethat_project/test/
 Tests have the naming convention 'feature_test.dart'
 
 ### Developer release notes
-Make sure all version are up to dates for all software technologies used.
+Mantain Flutter SDK version, Android Studio Version, Gradle wrapper, Java version, up to date.
