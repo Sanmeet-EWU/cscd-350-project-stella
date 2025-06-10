@@ -7,7 +7,7 @@ Here is a high-level view of the folder structure for your reference.
   
 diagrams
   ->images
-take_thatproject
+  take_thatproject
   ->project contents
 .idea
 
