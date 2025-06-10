@@ -28,18 +28,13 @@ class _UserHomeState extends State<UserHome> {
 
   Future<void> loadPrompts() async {
     try {
-      // Get download URL for prompts.json in Firebase Storage
       final storage = FirebaseStorage.instance;
       String url = await storage.ref('prompt.json').getDownloadURL();
-
-      // Fetch the JSON file content using http
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         List<dynamic> jsonList = json.decode(response.body);
         prompts = jsonList.map((e) => e.toString()).toList();
-
-        // Calculate today's prompt index by days since fixed date
         final baseDate = DateTime(2025, 1, 1);
         final today = DateTime.now();
         final diffDays = today.difference(baseDate).inDays;
