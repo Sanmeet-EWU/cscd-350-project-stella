@@ -37,4 +37,4 @@ Add new test cases under ```takethat_project/test/```
 Tests have the naming convention 'feature_test.dart'
 
 ### Developer release notes
-Mantain Flutter SDK version, Android Studio Version, Gradle wrapper, Java version, up to date in their respective files. Make sure pubspec.yaml is up to date with any of the nessecary dependencies. New assets should be added to ```assets```. New fonts to ```fonts```. New dart pages to ```lib```.
+Mantain Flutter SDK version, Android Studio Version, Gradle wrapper, Java version, up to date in their respective files. Make sure pubspec.yaml is up to date with any of the nessecary dependencies. New assets should be added to ```assets```. New fonts to ```fonts```. New dart pages to ```lib/pages```.
