@@ -10,8 +10,8 @@ take_thatproject
 .idea
 
 ### Folder contents
-- 'diagrams' and images contains nessecary diagrams
-- 'takethat_project' contains all nessecary contents to run the software
+- 'diagrams' and images contains necessary diagrams
+- 'takethat_project' contains all necessary contents to run the software
   
 ### How to build the software.
 In order to build the software you must download   
