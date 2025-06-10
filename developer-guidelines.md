@@ -14,7 +14,7 @@ developer-guidelines.md
 
 ### Folder contents
 - ```diagrams``` and ```images``` contains necessary diagrams
-- 'takethat_project' contains all necessary contents to run the software
+- ```takethat_project``` contains all necessary contents to run the software
   
 ### How to build the software.
 In order to build the software you must download   
