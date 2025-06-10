@@ -3,11 +3,11 @@
 Here is a high-level view of the folder structure for your reference.
   
 diagrams  
-    -> images    
+&emsp-> images    
 take_thatproject  
-    -> lib  
-    -> test  
-    -> pubspec.yaml  
+&emsp-> lib  
+&emsp-> test  
+&emsp-> pubspec.yaml  
 
 ### Folder contents
 - 'diagrams' and 'images' contains necessary diagrams
