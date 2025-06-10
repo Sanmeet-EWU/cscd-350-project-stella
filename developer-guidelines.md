@@ -1,13 +1,13 @@
 ### Layout
-Directory consists of 3 folders (diagrams, takethat_project, .idea)
-  
+
 Here is a high-level view of the folder structure for your reference.
   
 diagrams
     -> images  
 take_thatproject
-    -> project contents  
-.idea
+    -> lib
+    -> test
+    -> pubspec.yaml
 
 ### Folder contents
 - 'diagrams' and images contains necessary diagrams
