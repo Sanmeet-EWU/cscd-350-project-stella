@@ -16,7 +16,7 @@ TakeThat! encourages real moments with limited-time prompts—making sharing fun
 
 ### Running Tests
 
-While in the project directory in the terminal/powershell run <pre> flutter test </pre>
+While in the project directory in the terminal/powershell run ''' flutter test '''
 
 
 
