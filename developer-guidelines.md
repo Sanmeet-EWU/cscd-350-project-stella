@@ -2,15 +2,15 @@
 
 Here is a high-level view of the folder structure for your reference.
   
-diagrams
-    -> images  
-take_thatproject
-    -> lib
-    -> test
-    -> pubspec.yaml
+diagrams  
+    -> images    
+take_thatproject  
+    -> lib  
+    -> test  
+    -> pubspec.yaml  
 
 ### Folder contents
-- 'diagrams' and images contains necessary diagrams
+- 'diagrams' and 'images' contains necessary diagrams
 - 'takethat_project' contains all necessary contents to run the software
   
 ### How to build the software.
