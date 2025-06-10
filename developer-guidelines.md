@@ -1,10 +1,10 @@
 ### Layout
 
-Here is a high-level view of the folder structure for your reference.
+Here is a high-level view of the folder structure and key components for your reference.
 <pre>
 diagrams  
     -> images    
-take_thatproject  
+takethat_project  
     -> lib  
     -> test  
     -> pubspec.yaml  
