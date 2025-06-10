@@ -1,3 +1,5 @@
+# TakeThat! Group Stella
+
 ### Project Description
 
 TakeThat! Is a fun and modern take of social media. We envision an mobile application where users can get notified to take a daily photo with a certain prompt. You can interact with friends and have your own social group. Social media today creates pressure to be perfect, causing stress and inauthentic interactions.
