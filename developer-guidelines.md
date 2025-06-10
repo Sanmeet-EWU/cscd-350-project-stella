@@ -18,9 +18,9 @@ developer-guidelines.md
   
 ### How to build the software.
 In order to build the software you must download   
-Android Studio https://developer.android.com/studio    
-Flutter SDK https://docs.flutter.dev/get-started/install  
-Visual Studio Code https://code.visualstudio.com/download  
+```Android Studio https://developer.android.com/studio   ``` 
+```Flutter SDK https://docs.flutter.dev/get-started/install  ```
+```Visual Studio Code https://code.visualstudio.com/download  ```
 
 Step 1. Download all necessary frameworks  
 Step 2. Open VSCode and install Flutter and Dart extensions  
