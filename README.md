@@ -1,6 +1,4 @@
-# <img src="logo.png" alt="drawing" width="100"/>
-
-# Group Stella 
+# <img src="logo.png" alt="drawing" width="100" style="float: right/> Group Stella 
 
 ### Project Description
 
