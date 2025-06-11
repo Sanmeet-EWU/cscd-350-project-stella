@@ -1,6 +1,6 @@
 # TakeThat! Group Stella 
 
-![logo](logo.png) 
+<img src="logo.png" alt="drawing" width="200"/>
 
 ### Project Description
 
