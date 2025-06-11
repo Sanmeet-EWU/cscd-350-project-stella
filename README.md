@@ -1,4 +1,6 @@
-# TakeThat! Group Stella
+# TakeThat! Group Stella 
+
+![logo](logo.png) 
 
 ### Project Description
 
