@@ -1,4 +1,4 @@
-# Group Stella <img src="logo.png" alt="drawing" width="100" style="float: right/>
+# TakeThat! Group Stella
 
 ### Project Description
 
