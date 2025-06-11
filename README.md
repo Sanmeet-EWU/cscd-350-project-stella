@@ -1,4 +1,4 @@
-# <img src="logo.png" alt="drawing" width="100" style="float: right/> Group Stella 
+# Group Stella <img src="logo.png" alt="drawing" width="100" style="float: right/>
 
 ### Project Description
 
@@ -19,7 +19,6 @@ TakeThat! encourages real moments with limited-time prompts—making sharing fun
 ### Running Tests
 
 Navigate to cscd-350-project-stella/takethat_app/test and run the command ``` flutter test ```
-
 
 
 
